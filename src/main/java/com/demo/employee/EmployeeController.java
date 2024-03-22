@@ -16,7 +16,7 @@ public class EmployeeController {
     private EmployeeService employeeService ;
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
-   // @GetMapping("/")
+
     public String greet(){
         return "Welcome to my demo spring boot application !";
     }

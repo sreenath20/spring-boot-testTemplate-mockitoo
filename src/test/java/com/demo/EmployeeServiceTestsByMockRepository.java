@@ -20,8 +20,7 @@ public class EmployeeServiceTestsByMockRepository {
     @MockBean
     private EmployeeRepository employeeMockRepository;
 
-//    @Autowired
-@MockBean
+    @Autowired
     private EmployeeService employeeService;
 
 
@@ -29,13 +28,18 @@ public class EmployeeServiceTestsByMockRepository {
     public void demoTest2() throws EmployeeException {
 
         when(this.employeeService.getAllEmployees()).thenReturn(new ArrayList<>());
+
         when(this.employeeMockRepository.findById(100))
                 .thenReturn(Optional.of(new Employee(100, "Ford", 2500.0)));
 
         assertEquals("Ford", employeeService.getEmployeeById(100).getName());
     }
+
     @Test
     public void testServiceWithOutActualRepository() throws EmployeeException {
+
+
+
 
         when(this.employeeMockRepository.findById(100))
                 .thenReturn(Optional.of(new Employee(100, "Ford", 2500.0)));
@@ -46,11 +50,12 @@ public class EmployeeServiceTestsByMockRepository {
     @Test
     public void testGetEmployeeThrowsExceptionTest() throws EmployeeException {
 
-      when(this.employeeMockRepository.findById(200))
+        when(this.employeeMockRepository.findById(200))
                 .thenReturn(Optional.empty());
 
 
         assertThrows(EmployeeException.class, () -> employeeService.getEmployeeById(200));
+
         try {
             employeeService.getEmployeeById(200);
         } catch (Exception e) {

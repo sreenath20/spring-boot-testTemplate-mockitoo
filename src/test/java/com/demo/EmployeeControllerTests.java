@@ -27,6 +27,7 @@ public class EmployeeControllerTests {
 
     @Test
     public void greetingShouldReturnDefaultMessage() throws Exception {
+
         assertThat(this.restTestTemplate.getForObject("http://localhost:" + port + "/v1/",
                 String.class)).contains("Welcome to my demo spring boot application !");
     }
@@ -39,6 +40,7 @@ public class EmployeeControllerTests {
 
     @Test
     public void getEmployeeByIdExceptionTest() throws Exception {
+
         String employeeExceptionMessage =this.restTestTemplate.getForObject("http://localhost:" + port + "/v1/employee/2", String.class);
         assertEquals("Employee Id does not exists.",employeeExceptionMessage);
     }
